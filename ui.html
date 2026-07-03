@@ -1,10 +1,156 @@
 
+
+<html>
+<head>
+  <style>
+
+  * {
+    font-family: Inter;
+  }
+
+  body {
+    padding: 1rem;
+  }
+
+  /*  Text Styles */
+  h1 {
+      font-size: 30px;
+  }
+
+  .body-text {
+      font-size: 12px;
+  }
+
+  h3 {
+      font-size: 16px;
+      margin-top: 2%;
+      margin-bottom: 1%;
+  }
+
+  h4 {
+    font-size: 13px;
+  }
+
+  .warning {
+    font-size: 10px;
+    margin-bottom: 4%;
+  }
+
+  .heading-text {
+    font-size: 12px;
+    padding-bottom: 2px;
+  }
+
+  /*  Heading */
+
+  .logo-and-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgb(30, 30, 30);
+    padding-bottom: 1px;
+
+  }
+
+  #logo {
+    width: 60px;
+    height:60px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .desc {
+    font-size: 12px;
+    text-align: justify;
+    padding-bottom: 1%;
+  }
+
+  /*  Body */
+
+  .response-box {
+    width: 450px;
+    height: 65px;
+    max-height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed rgb(30, 30, 30);
+    background-color: rgb(242, 242, 242);
+    font-size: 14px;
+    margin-bottom: 4%;
+
+  }
+
+  /* Main Grid */
+
+  .source-text-properties {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+   
+  }
+
+  .property-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .property-headers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .property-headers h4 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgb(112,112,112);
+
+  }
+
+  .col-label { width: 25%; text-align: left; }
+  .col-value { width: 45%; text-align: left; color: rgb(30, 30, 30); }
+  .col-check { width: 20%; text-align: center;}
+
+  .body-text {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  .checklist input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
+  }
+
+
+  #search-loc {
+    width: 450px;
+    height: 25px;
+    cursor: pointer;
+    border-width: 2px;
+  }
+
+  #submit-button {
+    width: 450px;
+    height: 45px;
+    color: white;
+    background-color: rgba(30,30,30);
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+</style>
+
+</head>
 <div class="heading">
   <header class="logo-and-title">
-    <img src="/assets/same-select-logo.png">
-    <h1>Same Text Style Select Plugin</h1>
+    <img id="logo" src="data:image/png;base64,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 alt="Same Select Plugin Logo">
+    <h1>Same Text Style Select</h1>
   </header>
-  <p>Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic  properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles. </p>
+  <p class="desc">Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic  properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles. </p>
 </div>
 <div class="body">
   <!--Status Bar-->
@@ -14,55 +160,88 @@
    <!--Source Text Layer Properties-->
   <div class="source-text">
   <h3 class="subheadings">Source Text Layer</h3>
-  <p class="body-text">Specific breakdown of selected text layer’s typographic properties.</p>
+  <p class="heading-text">Specific breakdown of selected text layer’s typographic properties.</p>
     <div class="source-text-properties">  
-      <div class="textprop">
-        <h3>Properties</h3>
-        <p class="body-text">Font Family</p>
-        <p class="body-text">Font Weight</p>
-        <p class="body-text">Font Size</p>
-        <p class="body-text">Line Height</p>
-        <p class="body-text">Letter Spacing</p>
-        <p class="body-text">Text Case</p>
-        <p class="body-text">Applied Style</p>
+      <!--Column Headers-->
+      <div class="property-headers">
+        <h4 class="col-label">Properties</h4>
+        <h4 class="col-value">Extracted Value</h4>
+        <h4 class="col-check">Include</h4>
       </div>
-      <div class="extracted-textprop">
-        <h3>Extracted Value</h3>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>
-        <span class="body-text">Extracted Property</span>         
-      </div>
-      <div class="checkbox-inclusion">
-        <h3>Included in the Search</h3>
-        <form>
-          <input type="checkbox" id="font-family" value="font-family">
-          <input type="checkbox" id="font-weight" value="font-weight">
-          <input type="checkbox" id="font-size" value="font-size">
-          <input type="checkbox" id="line-height" value="line-height">
-          <input type="checkbox" id="letter-spacing" value="letter-spacing">
-          <input type="checkbox" id="applied-style" value="applied-style">
-        
-      </div>
-    </div>
-  </div>
+      <form class="checklist">
+        <!--Row 1: Font Family-->
+        <div class="property-row">
+          <span class="body-text col-label">Font Family</span>
+          <span class="body-text col-value">Inter</span>
+          <div class="col-check">
+            <input type="checkbox" id="font-family" value="font-family">
+          </div>
+        </div>
+
+        <!--Row 2: Font Weight-->
+        <div class="property-row">
+          <span class="body-text col-label">Font Weight</span>
+          <span class="body-text col-value">Regular</span>
+          <div class="col-check">
+             <input type="checkbox" id="font-weight" value="font-weight">
+          </div>
+        </div>
+
+        <!--Row 3: Font Size-->
+        <div class="property-row">
+          <span class="body-text col-label">Font Size</span>
+          <span class="body-text col-value">14px</span>
+          <div class="col-check">
+             <input type="checkbox" id="font-size" value="">
+          </div>
+        </div>
+
+        <!--Row 4: Line Height-->
+        <div class="property-row">
+          <span class="body-text col-label">Line Height</span>
+          <span class="body-text col-value">Auto</span>
+          <div class="col-check">
+             <input type="checkbox" id="line-height" value="line-height">
+          </div>
+        </div>
+
+        <!--Row 5: Letter Spacing-->
+        <div class="property-row">
+          <span class="body-text col-label">Letter Spacing</span>
+          <span class="body-text col-value">0%</span>
+          <div class="col-check">
+             <input type="checkbox" id="letter-spacing" value="letter-spacing">
+          </div>
+        </div>
+
+        <!--Row 6: Applied Style-->
+        <div class="property-row">
+          <span class="body-text col-label">Applied Style</span>
+          <span class="body-text col-value">None</span>
+          <div class="col-check">
+             <input type="checkbox" id="applied-style" value="applied-style">
+          </div>
+        </div>
+
+      </form>
+      
   <!--Search Area-->
   <div class="search-area">
     <h3 class="subheadings">Search Area</h3>
-    <p class="body-text">Define where should the tool will look. </p>
+    <p class="heading-text">Define where should the tool will look. </p>
       <select name="search-loc" id="search-loc">
         <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
         <option value="entire-doc">Entire Document - The global search</option>
         <option value="within-top-frame">Within top frame -  Searches the entire artboard/screen the source is on.</option>
       </select>
-      <input type="submit" value="Select Now">
+      <p class="warning">⚠This plugin skips locked and hidden layers. </p> 
+      <input id="submit-button" type="submit" value="Select Now">
     </form>
     
 
   </div>
   
-
 </div>
+
+
+</html>
