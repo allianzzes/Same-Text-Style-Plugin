@@ -1,17 +1,68 @@
-<h2>Rectangle Creator</h2>
-<p>Count: <input id="count" type="number" value="5"></p>
-<button id="create">Create</button>
-<button id="cancel">Cancel</button>
-<script>
 
-document.getElementById('create').onclick = () => {
-  const textbox = document.getElementById('count');
-  const count = parseInt(textbox.value, 10);
-  parent.postMessage({ pluginMessage: { type: 'create-shapes', count } }, '*')
-}
+<div class="heading">
+  <header class="logo-and-title">
+    <img src="/assets/same-select-logo.png">
+    <h1>Same Text Style Select Plugin</h1>
+  </header>
+  <p>Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic  properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles. </p>
+</div>
+<div class="body">
+  <!--Status Bar-->
+  <div class="response-box">
+  <span id="status-indicator">Select a text layer to start.</span>
+  </div>
+   <!--Source Text Layer Properties-->
+  <div class="source-text">
+  <h3 class="subheadings">Source Text Layer</h3>
+  <p class="body-text">Specific breakdown of selected text layer’s typographic properties.</p>
+    <div class="source-text-properties">  
+      <div class="textprop">
+        <h3>Properties</h3>
+        <p class="body-text">Font Family</p>
+        <p class="body-text">Font Weight</p>
+        <p class="body-text">Font Size</p>
+        <p class="body-text">Line Height</p>
+        <p class="body-text">Letter Spacing</p>
+        <p class="body-text">Text Case</p>
+        <p class="body-text">Applied Style</p>
+      </div>
+      <div class="extracted-textprop">
+        <h3>Extracted Value</h3>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>
+        <span class="body-text">Extracted Property</span>         
+      </div>
+      <div class="checkbox-inclusion">
+        <h3>Included in the Search</h3>
+        <form>
+          <input type="checkbox" id="font-family" value="font-family">
+          <input type="checkbox" id="font-weight" value="font-weight">
+          <input type="checkbox" id="font-size" value="font-size">
+          <input type="checkbox" id="line-height" value="line-height">
+          <input type="checkbox" id="letter-spacing" value="letter-spacing">
+          <input type="checkbox" id="applied-style" value="applied-style">
+        
+      </div>
+    </div>
+  </div>
+  <!--Search Area-->
+  <div class="search-area">
+    <h3 class="subheadings">Search Area</h3>
+    <p class="body-text">Define where should the tool will look. </p>
+      <select name="search-loc" id="search-loc">
+        <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
+        <option value="entire-doc">Entire Document - The global search</option>
+        <option value="within-top-frame">Within top frame -  Searches the entire artboard/screen the source is on.</option>
+      </select>
+      <input type="submit" value="Select Now">
+    </form>
+    
 
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
+  </div>
+  
 
-</script>
+</div>
