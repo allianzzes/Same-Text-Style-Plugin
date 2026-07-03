@@ -172,7 +172,7 @@
         <!--Row 1: Font Family-->
         <div class="property-row">
           <span class="body-text col-label">Font Family</span>
-          <span class="body-text col-value">Inter</span>
+          <span id="extracted-font-family" class="body-text col-value">Inter</span>
           <div class="col-check">
             <input type="checkbox" id="font-family" value="font-family">
           </div>
@@ -181,7 +181,7 @@
         <!--Row 2: Font Weight-->
         <div class="property-row">
           <span class="body-text col-label">Font Weight</span>
-          <span class="body-text col-value">Regular</span>
+          <span id="extracted-font-weight" class="body-text col-value">Regular</span>
           <div class="col-check">
              <input type="checkbox" id="font-weight" value="font-weight">
           </div>
@@ -190,7 +190,7 @@
         <!--Row 3: Font Size-->
         <div class="property-row">
           <span class="body-text col-label">Font Size</span>
-          <span class="body-text col-value">14px</span>
+          <span id="extracted-font-size" class="body-text col-value">14px</span>
           <div class="col-check">
              <input type="checkbox" id="font-size" value="font-size">
           </div>
@@ -199,7 +199,7 @@
         <!--Row 4: Line Height-->
         <div class="property-row">
           <span class="body-text col-label">Line Height</span>
-          <span class="body-text col-value">Auto</span>
+          <span id="extracted-line-height" class="body-text col-value">Auto</span>
           <div class="col-check">
              <input type="checkbox" id="line-height" value="line-height">
           </div>
@@ -208,16 +208,25 @@
         <!--Row 5: Letter Spacing-->
         <div class="property-row">
           <span class="body-text col-label">Letter Spacing</span>
-          <span class="body-text col-value">0%</span>
+          <span id="extracted-letter-spacing" class="body-text col-value">0%</span>
           <div class="col-check">
              <input type="checkbox" id="letter-spacing" value="letter-spacing">
           </div>
         </div>
 
-        <!--Row 6: Applied Style-->
+        <!--Row 6: Text Case -->
+        <div class="property-row">
+          <span class="body-text col-label">Text Case</span>
+          <span id="extracted-text-case" class="body-text col-value">Uppercase</span>
+          <div class="col-check">
+             <input type="checkbox" id="text-case" value="text-case">
+          </div>
+        </div>
+
+        <!--Row 7: Applied Style-->
         <div class="property-row">
           <span class="body-text col-label">Applied Style</span>
-          <span class="body-text col-value">None</span>
+          <span id="extracted-applied-style" class="body-text col-value">None</span>
           <div class="col-check">
              <input type="checkbox" id="applied-style" value="applied-style">
           </div>
@@ -232,8 +241,6 @@
       <select name="search-loc" id="search-loc">
         <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
         <option value="entire-doc">Entire Document - The global search</option>
-        <option value="within-top-frame">Within top frame -  Searches the entire artboard/screen the source is on.</option>
-      </select>
       <p class="warning">⚠This plugin skips locked and hidden layers. </p> 
       <input id="submit-button" type="submit" value="Select Now">
     </form>
@@ -243,12 +250,5 @@
   
 </div>
 
-<script>
 
-document.getElementById('submit-button').onclick = () => {
-  
-}
-
-
-</script>
 </html>
