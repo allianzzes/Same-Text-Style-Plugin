@@ -1,29 +1,26 @@
-
-
 <head>
   <style>
-
   * {
-    font-family: Inter;
+    font-family: Inter, sans-serif;
   }
 
   body {
     padding: 1rem;
   }
 
-  /*  Text Styles */
+  /* Text Styles */
   h1 {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   .body-text {
-      font-size: 12px;
+    font-size: 12px;
   }
 
   h3 {
-      font-size: 16px;
-      margin-top: 2%;
-      margin-bottom: 1%;
+    font-size: 16px;
+    margin-top: 2%;
+    margin-bottom: 1%;
   }
 
   h4 {
@@ -40,20 +37,18 @@
     padding-bottom: 2px;
   }
 
-  /*  Heading */
-
+  /* Heading */
   .logo-and-title {
     display: flex;
     align-items: center;
     gap: 12px;
     border-bottom: 1px solid rgb(30, 30, 30);
     padding-bottom: 1px;
-
   }
 
   #logo {
     width: 60px;
-    height:60px;
+    height: 60px;
     max-width: 100px;
     max-height: 100px;
   }
@@ -64,8 +59,7 @@
     padding-bottom: 1%;
   }
 
-  /*  Body */
-
+  /* Body */
   .response-box {
     width: 450px;
     height: 65px;
@@ -77,17 +71,14 @@
     background-color: rgb(242, 242, 242);
     font-size: 14px;
     margin-bottom: 4%;
-
   }
 
   /* Main Grid */
-
   .source-text-properties {
     display: flex;
     flex-direction: column;
     gap: 8px;
     width: 100%;
-   
   }
 
   .property-row {
@@ -106,13 +97,12 @@
     margin: 0;
     font-size: 13px;
     font-weight: 600;
-    color: rgb(112,112,112);
-
+    color: rgb(112, 112, 112);
   }
 
   .col-label { width: 25%; text-align: left; }
   .col-value { width: 45%; text-align: left; color: rgb(30, 30, 30); }
-  .col-check { width: 20%; text-align: center;}
+  .col-check { width: 20%; text-align: center; }
 
   .body-text {
     font-size: 13px;
@@ -123,7 +113,6 @@
     cursor: pointer;
     margin: 0;
   }
-
 
   #search-loc {
     width: 450px;
@@ -136,30 +125,31 @@
     width: 450px;
     height: 45px;
     color: white;
-    background-color: rgba(30,30,30);
+    background-color: rgb(30, 30, 30);
     font-weight: bolder;
     cursor: pointer;
   }
-
-</style>
-
+  </style>
 </head>
+
 <div class="heading">
   <header class="logo-and-title">
-    <img id="logo" src="data:image/png;base64,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 alt="Same Select Plugin Logo">
+    <img id="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAADG5JREFUeAHt3b1PG08ex/GB3ymiyANBihQpkSD0kRwqumCq6+LjH4jdXZVwBbUhVZQGH91VhjINPyijFOAivSmQ7goESUSJApEipUjE7WfJRrvLg71wl8ns9/2SJrZZyBqDP+zMfHd2wJ1tOGp物理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" alt="Same Select Plugin Logo">
     <h1>Same Text Style Select</h1>
   </header>
-  <p class="desc">Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic  properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles. </p>
+  <p class="desc">Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles.</p>
 </div>
+
 <div class="body">
   <!--Status Bar-->
   <div class="response-box">
-  <span id="status-indicator">Select a text layer to start.</span>
+    <span id="status-indicator">Select a text layer to start.</span>
   </div>
-   <!--Source Text Layer Properties-->
+
+  <!--Source Text Layer Properties-->
   <div class="source-text">
-  <h3 class="subheadings">Source Text Layer</h3>
-  <p class="heading-text">Specific breakdown of selected text layer’s typographic properties.</p>
+    <h3 class="subheadings">Source Text Layer</h3>
+    <p class="heading-text">Specific breakdown of selected text layer’s typographic properties.</p>
     <div class="source-text-properties">  
       <!--Column Headers-->
       <div class="property-headers">
@@ -182,7 +172,7 @@
           <span class="body-text col-label">Font Weight</span>
           <span id="extracted-font-weight" class="body-text col-value">Regular</span>
           <div class="col-check">
-             <input type="checkbox" id="font-weight" value="font-weight">
+            <input type="checkbox" id="font-weight" value="font-weight">
           </div>
         </div>
 
@@ -191,7 +181,7 @@
           <span class="body-text col-label">Font Size</span>
           <span id="extracted-font-size" class="body-text col-value">14px</span>
           <div class="col-check">
-             <input type="checkbox" id="font-size" value="font-size">
+            <input type="checkbox" id="font-size" value="font-size">
           </div>
         </div>
 
@@ -200,7 +190,7 @@
           <span class="body-text col-label">Line Height</span>
           <span id="extracted-line-height" class="body-text col-value">Auto</span>
           <div class="col-check">
-             <input type="checkbox" id="line-height" value="line-height">
+            <input type="checkbox" id="line-height" value="line-height">
           </div>
         </div>
 
@@ -209,7 +199,7 @@
           <span class="body-text col-label">Letter Spacing</span>
           <span id="extracted-letter-spacing" class="body-text col-value">0%</span>
           <div class="col-check">
-             <input type="checkbox" id="letter-spacing" value="letter-spacing">
+            <input type="checkbox" id="letter-spacing" value="letter-spacing">
           </div>
         </div>
 
@@ -218,7 +208,7 @@
           <span class="body-text col-label">Text Case</span>
           <span id="extracted-text-case" class="body-text col-value">Uppercase</span>
           <div class="col-check">
-             <input type="checkbox" id="text-case" value="text-case">
+            <input type="checkbox" id="text-case" value="text-case">
           </div>
         </div>
 
@@ -227,73 +217,69 @@
           <span class="body-text col-label">Applied Style</span>
           <span id="extracted-applied-style" class="body-text col-value">None</span>
           <div class="col-check">
-             <input type="checkbox" id="applied-style" value="applied-style">
+            <input type="checkbox" id="applied-style" value="applied-style">
           </div>
         </div>
-
       </form>
-      
+    </div>
+  </div>
+
   <!--Search Area-->
   <div class="search-area">
     <h3 class="subheadings">Search Area</h3>
-    <p class="heading-text">Define where should the tool will look. </p>
-      <select name="search-loc" id="search-loc">
-        <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
-        <option value="entire-doc">Entire Document - The global search</option>
-      <p class="warning">⚠This plugin skips locked and hidden layers. </p> 
-      <input id="submit-button" type="submit" value="Select Now">
-    </form>
-    
-
+    <p class="heading-text">Define where should the tool look.</p>
+    <select name="search-loc" id="search-loc">
+      <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
+      <option value="entire-doc">Entire Document - The global search</option>
+    </select>
+    <p class="warning">⚠ This plugin skips locked and hidden layers.</p> 
+    <input id="submit-button" type="submit" value="Select Now">
   </div>
-  
 </div>
 
 <script>
-
 // Receive message from code.ts
 window.onmessage = (event) => {
     const message = event.data.pluginMessage;
-
     const statusIndicator = document.getElementById("status-indicator");
     const propertiesPanel = document.querySelector(".source-text-properties");
 
-
-
     if (message.type === 'VALID_SELECTION') {
-
-        //Text layer selected and valid.
         statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”';
         statusIndicator.style.backgroundColor = "rgb(154,213,255)";
         propertiesPanel.style.display = "flex";
 
-        //Display the extracted values
+        // Display the extracted values
         document.getElementById("extracted-font-family").innerText = message.fontFamily;
         document.getElementById("extracted-font-weight").innerText = message.fontWeight;
         document.getElementById("extracted-font-size").innerText = message.fontSize;
         document.getElementById("extracted-line-height").innerText = message.lineHeight;
         document.getElementById("extracted-letter-spacing").innerText = message.letterSpacing;
         document.getElementById("extracted-text-case").innerText = message.textCase;
-        document.getElementById("extracted-applied-style").innerText = message.textStyleId;
+        document.getElementById("extracted-applied-style").innerText = message.appliedStyle;
 
-
-    } else if (message.type == 'INVALID_SELECTION') {
-        //Nothing or the selected object is not a text node.
+    } else if (message.type === 'INVALID_SELECTION') {
         statusIndicator.innerText = "Select a text layer to start.";
-        propertiesPanel.style.display = "none"; // Hide the rows
+        statusIndicator.style.backgroundColor = "";
+        propertiesPanel.style.display = "none";
     }
 
+    if (message.type === 'SEARCH_COMPLETE') {
+        if (message.count > 0) {
+            statusIndicator.innerText = `Success! ${message.count} matching layers selected.`;
+            statusIndicator.style.backgroundColor = "rgb(154,255,154)";
+        } else {
+            statusIndicator.innerText = "No matches found. Try unchecking one property to broaden your search.";
+            statusIndicator.style.backgroundColor = "rgb(255, 180, 204)"; 
+        }
+    }
 }
 
-// Select Now is clicked. Values are compiled as dictionary using object constructor.
-document.getElementById("submit-button").onclick = function() {propertyExtraction()};
+document.getElementById("submit-button").onclick = function() { propertyExtraction() };
 
-
-function propertyExtraction(){
-    // 1. Simple object literal 
+function propertyExtraction() {
     const filters = {};
 
-    // 2. Safely check if a box is checked, then record the text string value
     if (document.getElementById("font-family").checked) { 
         filters.fontFamily = document.getElementById("extracted-font-family").innerText;
     }
@@ -313,13 +299,12 @@ function propertyExtraction(){
         filters.textCase = document.getElementById("extracted-text-case").innerText;
     }
     if (document.getElementById("applied-style").checked) { 
-        filters.textStyleId = document.getElementById("extracted-applied-style").innerText;
+        // Sync identifier names: passing exact style display name or style ID string
+        filters.appliedStyleName = document.getElementById("extracted-applied-style").innerText;
     }
     
-    // 3. Grab the dropdown search location
-    const searchScope = document.getElementById("search-loc").value; // Will be "current-page" or "entire-doc"
+    const searchScope = document.getElementById("search-loc").value;
 
-    // 4. Send the data to ts
     parent.postMessage({ 
         pluginMessage: { 
             type: 'EXECUTE_SEARCH', 
@@ -328,19 +313,4 @@ function propertyExtraction(){
         } 
     }, '*');
 }
-
-//Search is COMPLETE
-if (message.type === 'SEARCH_COMPLETE') {
-    if (message.count > 0) {
-        statusIndicator.innerText = `Success! ${message.count} matching layers selected.`;
-        statusIndicator.style.backgroundColor = "rgb(154,255,154)";
-    } else {
-        statusIndicator.innerText = "No matches found. Try unchecking one property to broaden your search.";
-        statusIndicator.style.backgroundColor = "rgb(255, 180, 204)"; 
-    }
-}
-
-
-
 </script>
-

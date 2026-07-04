@@ -1,30 +1,31 @@
-
 figma.showUI(__html__);
 figma.ui.resize(500, 680);
 
-// Check the selected text.
-
-function checkSelection () {
+function checkSelection() {
     const selection = figma.currentPage.selection;
 
-    //selection = 1 and a text layer
-    if (selection.length === 1 && selection[0].type == "TEXT") {
-        const textLayer = selection[0] as TextNode;
+    if (selection.length === 1 && selection[0].type === "TEXT") {
+        const textLayer = selection[0] as TextNode; 
+
+        // Resolve Style ID to a readable design token name if it exists
+        let styleName = 'None';
+        if (textLayer.textStyleId !== figma.mixed && textLayer.textStyleId !== '') {
+            const style = figma.getStyleById(textLayer.textStyleId as string);
+            if (style) styleName = style.name;
+        }
 
         figma.ui.postMessage({
-            type: 'VALID SELECTION',
-            fontFamily: textLayer.fontName !== figma.mixed ? textLayer.fontName.family: 'Mixed', 
-            fontWeight: textLayer.fontName !== figma.mixed ? textLayer.fontName.style: 'Mixed',
-            fontSize: textLayer.fontSize !== figma.mixed ? textLayer.fontSize: 'Mixed',
-            lineHeight: textLayer.lineHeight !== figma.mixed ? textLayer.lineHeight: 'Mixed',
-            letterSpacing: textLayer.letterSpacing !== figma.mixed ? textLayer.letterSpacing: 'Mixed',
+            type: 'VALID_SELECTION',
+            fontFamily: textLayer.fontName !== figma.mixed ? textLayer.fontName.family : 'Mixed', 
+            fontWeight: textLayer.fontName !== figma.mixed ? textLayer.fontName.style : 'Mixed',
+            fontSize: textLayer.fontSize !== figma.mixed ? String(textLayer.fontSize) : 'Mixed',
+            lineHeight: textLayer.lineHeight !== figma.mixed ? (textLayer.lineHeight.unit === 'AUTO' ? 'Auto' : 'Custom') : 'Mixed',
+            letterSpacing: textLayer.letterSpacing !== figma.mixed ? String(textLayer.letterSpacing.value) : 'Mixed',
             textCase: textLayer.textCase !== figma.mixed ? textLayer.textCase : 'Mixed',
-            textStyleId: textLayer.textStyleId !== figma.mixed ? textLayer.textStyleId: 'Mixed'
-
+            appliedStyle: styleName
         });
     } else {
-        figma.ui.postMessage({type : 'INVALID_SELECTOR'});
-
+        figma.ui.postMessage({ type: 'INVALID_SELECTION' });
     }
 }
 
@@ -38,13 +39,9 @@ figma.ui.onmessage = async (msg) => {
     if (msg.type === 'EXECUTE_SEARCH') {
         const filters = msg.filters;
         const scope = msg.scope;
-
-         let targetNodes: SceneNode[] = [];
-
-         //Search area
+        let targetNodes: SceneNode[] = [];
 
         if (scope === "current-page") {
-            //Find all text layers on the current active page
             targetNodes = figma.currentPage.findAll(node => node.type === "TEXT");
         } else {
             for (const page of figma.root.children) {
@@ -53,67 +50,56 @@ figma.ui.onmessage = async (msg) => {
             }
         }
 
-        const matchingLayers = targetNodes.filter((node => {
+        const matchingLayers = targetNodes.filter(node => {
             const textNode = node as TextNode;
 
-            //Font Family 
             if (filters.fontFamily) {
                 const currentFamily = textNode.fontName !== figma.mixed ? textNode.fontName.family : 'Mixed';
                 if (currentFamily !== filters.fontFamily) return false;
             }
 
-            //Font Weight
             if (filters.fontWeight) {
                 const currentWeight = textNode.fontName !== figma.mixed ? textNode.fontName.style : 'Mixed';
                 if (currentWeight !== filters.fontWeight) return false;
             }
 
-            //Font Size
             if (filters.fontSize) {
-                const currentSize = textNode.fontSize !== figma.mixed ? textNode.fontSize : 'Mixed';
+                const currentSize = textNode.fontSize !== figma.mixed ? String(textNode.fontSize) : 'Mixed';
                 if (currentSize !== filters.fontSize) return false;
             }
 
-            //Line Height
             if (filters.lineHeight) {
-                const currentHeight = textNode.lineHeight !== figma.mixed ? textNode.lineHeight : 'Mixed';
+                const currentHeight = textNode.lineHeight !== figma.mixed ? (textNode.lineHeight.unit === 'AUTO' ? 'Auto' : 'Custom') : 'Mixed';
                 if (currentHeight !== filters.lineHeight) return false;
             }
 
-            //Letter Spacing 
             if (filters.letterSpacing) {
-                const currentSpacing = textNode.letterSpacing !== figma.mixed ? textNode.letterSpacing : 'Mixed';
+                const currentSpacing = textNode.letterSpacing !== figma.mixed ? String(textNode.letterSpacing.value) : 'Mixed';
                 if (currentSpacing !== filters.letterSpacing) return false;
             }
 
-            //Text Case
             if (filters.textCase) {
                 const currentCase = textNode.textCase !== figma.mixed ? textNode.textCase : 'Mixed';
                 if (currentCase !== filters.textCase) return false;
             }
 
-            //Applied Style 
-            if (filters.appliedStyle) {
-                const currentStyle = textNode.textStyleId !== figma.mixed ? textNode.textStyleId : 'Mixed';
-                if (currentStyle !== filters.appliedStyle) return false;
+            if (filters.appliedStyleName) {
+                let currentStyleName = 'None';
+                if (textNode.textStyleId !== figma.mixed && textNode.textStyleId !== '') {
+                    const style = figma.getStyleById(textNode.textStyleId as string);
+                    if (style) currentStyleName = style.name;
+                }
+                if (currentStyleName !== filters.appliedStyleName) return false;
             }
 
-            return true; // Keeps the layer if it passed the rule checks^^
-            
-        }));
+            return true;
+        });
 
         if (matchingLayers.length > 0) {
             figma.currentPage.selection = matchingLayers;
-            //Count layers that matched
-            figma.ui.postMessage({ type: 'SEARCH_COMPLETE', count: matchingLayers.length});  
-
+            figma.ui.postMessage({ type: 'SEARCH_COMPLETE', count: matchingLayers.length });  
         } else {
-            figma.ui.postMessage({ tyoe: 'SEARCH_COMPLETE', count: 0});
+            figma.ui.postMessage({ type: 'SEARCH_COMPLETE', count: 0 });
         }
-
     }
-
-   
-    
-}
-
+};
