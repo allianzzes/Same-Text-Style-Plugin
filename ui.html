@@ -1,6 +1,5 @@
 
 
-<html>
 <head>
   <style>
 
@@ -250,5 +249,98 @@
   
 </div>
 
+<script>
 
-</html>
+// Receive message from code.ts
+window.onmessage = (event) => {
+    const message = event.data.pluginMessage;
+
+    const statusIndicator = document.getElementById("status-indicator");
+    const propertiesPanel = document.querySelector(".source-text-properties");
+
+
+
+    if (message.type === 'VALID_SELECTION') {
+
+        //Text layer selected and valid.
+        statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”';
+        statusIndicator.style.backgroundColor = "rgb(154,213,255)";
+        propertiesPanel.style.display = "flex";
+
+        //Display the extracted values
+        document.getElementById("extracted-font-family").innerText = message.fontFamily;
+        document.getElementById("extracted-font-weight").innerText = message.fontWeight;
+        document.getElementById("extracted-font-size").innerText = message.fontSize;
+        document.getElementById("extracted-line-height").innerText = message.lineHeight;
+        document.getElementById("extracted-letter-spacing").innerText = message.letterSpacing;
+        document.getElementById("extracted-text-case").innerText = message.textCase;
+        document.getElementById("extracted-applied-style").innerText = message.textStyleId;
+
+
+    } else if (message.type == 'INVALID_SELECTION') {
+        //Nothing or the selected object is not a text node.
+        statusIndicator.innerText = "Select a text layer to start.";
+        propertiesPanel.style.display = "none"; // Hide the rows
+    }
+
+}
+
+// Select Now is clicked. Values are compiled as dictionary using object constructor.
+document.getElementById("submit-button").onclick = function() {propertyExtraction()};
+
+
+function propertyExtraction(){
+    // 1. Simple object literal 
+    const filters = {};
+
+    // 2. Safely check if a box is checked, then record the text string value
+    if (document.getElementById("font-family").checked) { 
+        filters.fontFamily = document.getElementById("extracted-font-family").innerText;
+    }
+    if (document.getElementById("font-weight").checked) { 
+        filters.fontWeight = document.getElementById("extracted-font-weight").innerText;
+    }
+    if (document.getElementById("font-size").checked) { 
+        filters.fontSize = document.getElementById("extracted-font-size").innerText;
+    }
+    if (document.getElementById("line-height").checked) { 
+        filters.lineHeight = document.getElementById("extracted-line-height").innerText;
+    }
+    if (document.getElementById("letter-spacing").checked) { 
+        filters.letterSpacing = document.getElementById("extracted-letter-spacing").innerText;
+    }
+    if (document.getElementById("text-case").checked) { 
+        filters.textCase = document.getElementById("extracted-text-case").innerText;
+    }
+    if (document.getElementById("applied-style").checked) { 
+        filters.textStyleId = document.getElementById("extracted-applied-style").innerText;
+    }
+    
+    // 3. Grab the dropdown search location
+    const searchScope = document.getElementById("search-loc").value; // Will be "current-page" or "entire-doc"
+
+    // 4. Send the data to ts
+    parent.postMessage({ 
+        pluginMessage: { 
+            type: 'EXECUTE_SEARCH', 
+            filters: filters, 
+            scope: searchScope 
+        } 
+    }, '*');
+}
+
+//Search is COMPLETE
+if (message.type === 'SEARCH_COMPLETE') {
+    if (message.count > 0) {
+        statusIndicator.innerText = `Success! ${message.count} matching layers selected.`;
+        statusIndicator.style.backgroundColor = "rgb(154,255,154)";
+    } else {
+        statusIndicator.innerText = "No matches found. Try unchecking one property to broaden your search.";
+        statusIndicator.style.backgroundColor = "rgb(255, 180, 204)"; 
+    }
+}
+
+
+
+</script>
+
