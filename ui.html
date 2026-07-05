@@ -122,12 +122,7 @@
     margin: 0;
   }
 
-  #search-loc {
-    width: 450px;
-    height: 25px;
-    cursor: pointer;
-    border-width: 2px;
-  }
+  
 
   #submit-button {
     width: 450px;
@@ -240,19 +235,13 @@
   <!--Search Area-->
   <div class="search-area">
     <h3 class="subheadings">Search Area</h3>
-    <p class="heading-text">Define where should the tool look.</p>
-    <select name="search-loc" id="search-loc">
-      <option value="current-page">Current Page - Searches everything on the canvas (Default)</option>
-      <option value="entire-doc">Entire Document - The global search</option>
-    </select>
-    <p class="warning">⚠ This plugin skips locked and hidden layers.</p> 
+    <p class="heading-text">Current Page - Searches everything on the canvas. [ <span id="page-name">Page</span> ]</p>
+    <p class="warning">⚠ This plugin searches through locked and hidden layers.</p> 
     <input id="submit-button" type="submit" value="Select Now">
   </div>
 </div>
 
 <script>
-
-
 
 // Receive message from code.ts
 window.onmessage = (event) => {
@@ -260,10 +249,11 @@ window.onmessage = (event) => {
     const statusIndicator = document.getElementById("status-indicator");
     const propertiesPanel = document.querySelector(".source-text-properties");
     const responseBox = document.getElementById("response-box");
+    const pageNameInterface = document.getElementById("page-name");
     
 
-    if (message.type === 'VALID_SELECTION') {
-        statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”.';
+    if (message.type === 'VALID_SELECTION' || message.type === "INITIALIZE_INTERFACE") {
+        statusIndicator.innerText = 'Properties extracted. Check the properties to be included in the search and click “Select Now”.';
         responseBox.style.backgroundColor = "rgb(154,213,255)";
         propertiesPanel.style.display = "flex";
 
@@ -275,12 +265,19 @@ window.onmessage = (event) => {
         document.getElementById("extracted-letter-spacing").innerText = message.letterSpacing;
         document.getElementById("extracted-text-case").innerText = message.textCase;
         document.getElementById("extracted-applied-style").innerText = message.appliedStyle;
+        
+        if (message.pageName) {
+          document.getElementById("page-name").innerText = message.pageName;
+        }
 
     } else if (message.type === 'INVALID_SELECTION') {
         statusIndicator.innerText = "Select a text layer to start.";
         responseBox.style.borderColor = "rgb(31,31,31)";
         responseBox.style.backgroundColor = "";
         propertiesPanel.style.display = "none";
+        pageNameInterface.style.display ="";
+        
+
     }
 
     if (message.type === 'SEARCH_COMPLETE') {
@@ -348,13 +345,11 @@ function propertyExtraction() {
   }
 
   // 4) Send the payload to code.ts
-  const searchScope = document.getElementById("search-loc").value;
   //Search will only be triggered if an item is checked.
   parent.postMessage({ 
     pluginMessage: {  
         type: 'EXECUTE_SEARCH', 
-        filters: filters, 
-        scope: searchScope 
+        filters: filters
           } 
       }, '*');
 

@@ -2,6 +2,11 @@ figma.showUI(__html__);
 
 let isPluginChangingSelection = false;
 
+// Send the initial page name immediately on load
+figma.ui.postMessage({
+  type: "INITIALIZE_INTERFACE",
+  pageName: figma.currentPage.name
+});
 
 function checkSelection() {
 
@@ -26,17 +31,17 @@ function checkSelection() {
             lineHeight: textLayer.lineHeight !== figma.mixed ? (textLayer.lineHeight.unit === 'AUTO' ? 'Auto' : 'Custom') : 'Mixed',
             letterSpacing: textLayer.letterSpacing !== figma.mixed ? String(textLayer.letterSpacing.value) : 'Mixed',
             textCase: textLayer.textCase !== figma.mixed ? textLayer.textCase : 'Mixed',
-            appliedStyle: styleName
-
+            appliedStyle: styleName,
+            pageName: figma.currentPage.name
             
         });
 
-        figma.ui.resize(500,740);
+        figma.ui.resize(500,690);
 
     } else {
         figma.ui.postMessage({ type: 'INVALID_SELECTION' });
         
-        figma.ui.resize(500, 580);
+        figma.ui.resize(500, 540);
     }
 }
 
@@ -53,14 +58,9 @@ figma.ui.onmessage = async (msg) => {
         const scope = msg.scope;
         let targetNodes: SceneNode[] = [];
 
-        if (scope === "current-page") {
-            targetNodes = figma.currentPage.findAll(node => node.type === "TEXT");
-        } else {
-            for (const page of figma.root.children) {
-                const pageTextNodes = page.findAll(node => node.type === "TEXT");
-                targetNodes = targetNodes.concat(pageTextNodes);
-            }
-        }
+        
+        targetNodes = figma.currentPage.findAll(node => node.type === "TEXT");
+        
 
         const matchingLayers = targetNodes.filter(node => {
             const textNode = node as TextNode;
