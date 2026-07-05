@@ -62,7 +62,7 @@
   /* Body */
   .response-box {
     width: 450px;
-    height: 65px;
+    height: 105px;
     max-height: 95%;
     display: flex;
     justify-content: center;
@@ -71,7 +71,15 @@
     background-color: rgb(242, 242, 242);
     font-size: 14px;
     margin-bottom: 4%;
+   
   }
+
+  #status-indicator {
+    padding: 4%;
+    margin: 1%;
+    text-align: center;
+  }
+
 
   /* Main Grid */
   .source-text-properties {
@@ -129,12 +137,17 @@
     font-weight: bolder;
     cursor: pointer;
   }
+
+  #submit-button:hover {
+    background-color: rgb(51, 51, 51);
+  }
+
   </style>
 </head>
 
 <div class="heading">
   <header class="logo-and-title">
-    <img id="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAADG5JREFUeAHt3b1PG08ex/GB3ymiyANBihQpkSD0kRwqumCq6+LjH4jdXZVwBbUhVZQGH91VhjINPyijFOAivSmQ7goESUSJApEipUjE7WfJRrvLg71wl8ns9/2SJrZZyBqDP+zMfHd2wJ1tOGp物理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" alt="Same Select Plugin Logo">
+    <img id="logo" src="data:image/png;base64,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" alt="Same Select Plugin Logo">
     <h1>Same Text Style Select</h1>
   </header>
   <p class="desc">Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles.</p>
@@ -142,7 +155,7 @@
 
 <div class="body">
   <!--Status Bar-->
-  <div class="response-box">
+  <div class="response-box" id="response-box">
     <span id="status-indicator">Select a text layer to start.</span>
   </div>
 
@@ -242,11 +255,12 @@
 window.onmessage = (event) => {
     const message = event.data.pluginMessage;
     const statusIndicator = document.getElementById("status-indicator");
+    const responseBox = document.getElementById("response-box");
     const propertiesPanel = document.querySelector(".source-text-properties");
 
     if (message.type === 'VALID_SELECTION') {
-        statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”';
-        statusIndicator.style.backgroundColor = "rgb(154,213,255)";
+        statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”.';
+        responseBox.style.backgroundColor = "rgb(154,213,255)";
         propertiesPanel.style.display = "flex";
 
         // Display the extracted values
@@ -260,17 +274,19 @@ window.onmessage = (event) => {
 
     } else if (message.type === 'INVALID_SELECTION') {
         statusIndicator.innerText = "Select a text layer to start.";
-        statusIndicator.style.backgroundColor = "";
+        responseBox.style.backgroundColor = "";
         propertiesPanel.style.display = "none";
     }
 
     if (message.type === 'SEARCH_COMPLETE') {
         if (message.count > 0) {
             statusIndicator.innerText = `Success! ${message.count} matching layers selected.`;
-            statusIndicator.style.backgroundColor = "rgb(154,255,154)";
+            responseBox.style.backgroundColor = "rgb(154,255,154)";
+            responseBox.style.borderColor = "rgb(0,139,0)";
         } else {
             statusIndicator.innerText = "No matches found. Try unchecking one property to broaden your search.";
-            statusIndicator.style.backgroundColor = "rgb(255, 180, 204)"; 
+            responseBox.style.backgroundColor = "rgb(255, 180, 204)"; 
+            responseBox.style.borderColor = "rgb(192,0,61)";
         }
     }
 }
@@ -278,39 +294,67 @@ window.onmessage = (event) => {
 document.getElementById("submit-button").onclick = function() { propertyExtraction() };
 
 function propertyExtraction() {
-    const filters = {};
 
-    if (document.getElementById("font-family").checked) { 
-        filters.fontFamily = document.getElementById("extracted-font-family").innerText;
-    }
-    if (document.getElementById("font-weight").checked) { 
-        filters.fontWeight = document.getElementById("extracted-font-weight").innerText;
-    }
-    if (document.getElementById("font-size").checked) { 
-        filters.fontSize = document.getElementById("extracted-font-size").innerText;
-    }
-    if (document.getElementById("line-height").checked) { 
-        filters.lineHeight = document.getElementById("extracted-line-height").innerText;
-    }
-    if (document.getElementById("letter-spacing").checked) { 
-        filters.letterSpacing = document.getElementById("extracted-letter-spacing").innerText;
-    }
-    if (document.getElementById("text-case").checked) { 
-        filters.textCase = document.getElementById("extracted-text-case").innerText;
-    }
-    if (document.getElementById("applied-style").checked) { 
-        // Sync identifier names: passing exact style display name or style ID string
-        filters.appliedStyleName = document.getElementById("extracted-applied-style").innerText;
-    }
+  const responseBox = document.getElementById("response-box");
+  const statusIndicator = document.getElementById("status-indicator");
+
+  const filters = {};
+
+  // 1) Check the checkboxes.
+  const isFontFamilyChecked = document.getElementById("font-family").checked;
+  const isFontWeightChecked = document.getElementById("font-weight").checked;
+  const isFontSizeChecked = document.getElementById("font-size").checked;
+  const isLineHeightChecked = document.getElementById("line-height").checked;
+  const isLetterSpacingChecked = document.getElementById("letter-spacing").checked;
+  const isTextCaseChecked = document.getElementById("text-case").checked;
+  const isAppliedStyleChecked = document.getElementById("applied-style").checked;
+
+  // 2) Validation: If nothing is selected, reject the search
+  if (!isFontFamilyChecked && !isFontWeightChecked && !isFontSizeChecked && !isLineHeightChecked 
+      && !isLetterSpacingChecked && !isTextCaseChecked && !isAppliedStyleChecked) {
+          statusIndicator.innerText= "Check at least one property to trigger the selection process";
+          responseBox.style.backgroundColor = "rgb(255, 180, 204)"; 
+
+      return;
+  }
+
+  //3) Store the properties inside the filter only if checked
+  if (isFontFamilyChecked) { 
+      filters.fontFamily = document.getElementById("extracted-font-family").innerText;
+  } 
+  if (isFontWeightChecked) { 
+      filters.fontWeight = document.getElementById("extracted-font-weight").innerText;
+  }
+  if (isFontSizeChecked) { 
+      filters.fontSize = document.getElementById("extracted-font-size").innerText;
+  }
+  if (isLineHeightChecked) { 
+      filters.lineHeight = document.getElementById("extracted-line-height").innerText;
+  }
+  if (isLetterSpacingChecked) { 
+      filters.letterSpacing = document.getElementById("extracted-letter-spacing").innerText;
+  }
+  if (isTextCaseChecked) { 
+      filters.textCase = document.getElementById("extracted-text-case").innerText;
+  }
+  if (isAppliedStyleChecked) { 
+      // Sync identifier names: passing exact style display name or style ID string
+      filters.appliedStyleName = document.getElementById("extracted-applied-style").innerText;
+  }
+
+  // 4) Send the payload to code.ts
+  const searchScope = document.getElementById("search-loc").value;
+  //Search will only be triggered if an item is checked.
+  parent.postMessage({ 
+    pluginMessage: {  
+        type: 'EXECUTE_SEARCH', 
+        filters: filters, 
+        scope: searchScope 
+          } 
+      }, '*');
+
     
-    const searchScope = document.getElementById("search-loc").value;
-
-    parent.postMessage({ 
-        pluginMessage: { 
-            type: 'EXECUTE_SEARCH', 
-            filters: filters, 
-            scope: searchScope 
-        } 
-    }, '*');
-}
+  }
+    
+   
 </script>

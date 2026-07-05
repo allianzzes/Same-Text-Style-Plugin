@@ -1,7 +1,10 @@
 figma.showUI(__html__);
-figma.ui.resize(500, 680);
+
+let isPluginChangingSelection = false;
 
 function checkSelection() {
+
+    if (isPluginChangingSelection) return;
     const selection = figma.currentPage.selection;
 
     if (selection.length === 1 && selection[0].type === "TEXT") {
@@ -23,9 +26,15 @@ function checkSelection() {
             letterSpacing: textLayer.letterSpacing !== figma.mixed ? String(textLayer.letterSpacing.value) : 'Mixed',
             textCase: textLayer.textCase !== figma.mixed ? textLayer.textCase : 'Mixed',
             appliedStyle: styleName
+
+            
         });
+
+        figma.ui.resize(500,740);
+
     } else {
         figma.ui.postMessage({ type: 'INVALID_SELECTION' });
+        figma.ui.resize(500, 580);
     }
 }
 
@@ -37,6 +46,7 @@ figma.on("selectionchange", () => {
 
 figma.ui.onmessage = async (msg) => {
     if (msg.type === 'EXECUTE_SEARCH') {
+        isPluginChangingSelection = true;
         const filters = msg.filters;
         const scope = msg.scope;
         let targetNodes: SceneNode[] = [];
@@ -101,5 +111,10 @@ figma.ui.onmessage = async (msg) => {
         } else {
             figma.ui.postMessage({ type: 'SEARCH_COMPLETE', count: 0 });
         }
-    }
+
+        setTimeout(() => {
+            isPluginChangingSelection =false;
+        }, 100);
+    } 
+
 };
