@@ -1,6 +1,8 @@
 # Same Style Select Plugin
 
-Same Text Style Select Plugin lets designers select texts across the design files based on specific typographic properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles.
+Designing is a process. A design concept undergoes multiple attempts of visualization and revisions before it gets finalized. Due to this phenomena, it is not unusual that the design workspace gets flooded with unused/to be revised text layers. 
+
+Same Text Style Select Plugin lets designers mass select texts across the design files based on specific typographic properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles.
 
 ## Steps to Use:
 
@@ -12,3 +14,5 @@ Same Text Style Select Plugin lets designers select texts across the design file
 ## Tips:
 
  If no matches were found, try unchecking one property to broaded search. 
+
+ 

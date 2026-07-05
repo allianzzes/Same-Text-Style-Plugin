@@ -2,6 +2,7 @@ figma.showUI(__html__);
 
 let isPluginChangingSelection = false;
 
+
 function checkSelection() {
 
     if (isPluginChangingSelection) return;
@@ -34,6 +35,7 @@ function checkSelection() {
 
     } else {
         figma.ui.postMessage({ type: 'INVALID_SELECTION' });
+        
         figma.ui.resize(500, 580);
     }
 }

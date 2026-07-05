@@ -183,7 +183,7 @@
         <!--Row 2: Font Weight-->
         <div class="property-row">
           <span class="body-text col-label">Font Weight</span>
-          <span id="extracted-font-weight" class="body-text col-value">Regular</span>
+          <span id="extracted-font-weight" class="body-text col-value"></span>
           <div class="col-check">
             <input type="checkbox" id="font-weight" value="font-weight">
           </div>
@@ -192,7 +192,7 @@
         <!--Row 3: Font Size-->
         <div class="property-row">
           <span class="body-text col-label">Font Size</span>
-          <span id="extracted-font-size" class="body-text col-value">14px</span>
+          <span id="extracted-font-size" class="body-text col-value"></span>
           <div class="col-check">
             <input type="checkbox" id="font-size" value="font-size">
           </div>
@@ -251,12 +251,16 @@
 </div>
 
 <script>
+
+
+
 // Receive message from code.ts
 window.onmessage = (event) => {
     const message = event.data.pluginMessage;
     const statusIndicator = document.getElementById("status-indicator");
-    const responseBox = document.getElementById("response-box");
     const propertiesPanel = document.querySelector(".source-text-properties");
+    const responseBox = document.getElementById("response-box");
+    
 
     if (message.type === 'VALID_SELECTION') {
         statusIndicator.innerText = 'Properties extracted. Hit the corresponding checkbox for the properties be included in the search. Define the search area and click “Select Now”.';
@@ -274,6 +278,7 @@ window.onmessage = (event) => {
 
     } else if (message.type === 'INVALID_SELECTION') {
         statusIndicator.innerText = "Select a text layer to start.";
+        responseBox.style.borderColor = "rgb(31,31,31)";
         responseBox.style.backgroundColor = "";
         propertiesPanel.style.display = "none";
     }
