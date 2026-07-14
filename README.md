@@ -4,7 +4,7 @@ Designing is a process. A design concept undergoes multiple attempts of visualiz
 
 Same Text Style Select Plugin lets designers mass select texts across the design files based on specific typographic properties. This tool is helpful for managing and organizing legacy design files, and files with inconsistent text styles.
 
-The concept for this plugin was initially for shape elements, and I called it as Same Shape Select. The idea that sparked this development is I want to create a plugin tool that can mass select shape elements when designing patterns. During the planning stage, I listed the properties that can be extracted from shapes. As I was creating the checklist that I'm about to follow throughout the development, I noticed that shape layers can be too delicate, and can possess a lot of properties ranging from height, width, color (that can be solid/ gradient), border, border radius, fill, and etc. This project being my first plugin tool, I quickly reassessed the scope of the project I am about to do, and turned my attention to text elements instead. But who knows? I may do it soon. 
+The concept for this plugin was initially for shape elements, and I called it as Same Shape Select. The idea that sparked this development is I want to create a plugin tool that can mass select shape elements when designing patterns. During the planning stage, I listed the properties that can be extracted from shapes. As I was creating the checklist that I'm about to follow throughout the development, I noticed that shape layers can be too delicate, and can possess a lot of properties ranging from height, width, color (that can be solid/ gradient), border, border radius, fill, and etc. This project being my first plugin tool, I quickly reassessed the scope of the project I am about to do, and turned my attention to text elements instead. Text elements are definitive in nature, with typographic properties such as weight, height, font family, making it easy to match programmatically. 
 
 ## 🗃️ Built with
 - HTML/CSS
@@ -21,7 +21,7 @@ If no matches were found, try unchecking one property to broaded search. Once th
 
 ## 🎞️ Video
 
-
+![Demonstration Video](same-text-style-select demo vid.mp4).
  
 
 
