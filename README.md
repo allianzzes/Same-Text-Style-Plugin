@@ -21,7 +21,10 @@ If no matches were found, try unchecking one property to broaded search. Once th
 
 ## 🎞️ Video
 
-<video src="https://raw.githubusercontent.com/allianzzes/Same-Text-Style-Plugin/main/same-text-style-select%20demo%20vid.mp4" width="100%" controls autoplay loop muted></video>
+
+<video src = "https://github.com/user-attachments/assets/cc6f2077-8c3e-408a-841a-105301f7bc7c" width= 100% controls autoplay loop muted></video>
+
+
 
 
  
